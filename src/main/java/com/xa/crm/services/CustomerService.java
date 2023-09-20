@@ -1,7 +1,8 @@
 package com.xa.crm.services;
 
+import com.xa.crm.models.Customer;
 import com.xa.crm.models.User;
-import com.xa.crm.repositories.UserRepository;
+import com.xa.crm.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,36 +10,38 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class CustomerService {
 
 
     @Autowired
-    UserRepository userRepository;
+    CustomerRepository customerRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+
+
+    public List<Customer> getAllUsers() {
+        return customerRepository.findAll();
     }
 
-    public Optional<User> getUserById(int id) {
-        return userRepository.findById(id);
+    public Optional<Customer> getUserById(int id) {
+        return customerRepository.findById(id);
     }
 
     public void deleteUserById(int id) {
         try {
-            userRepository.deleteById(id);
+            customerRepository.deleteById(id);
         }catch (Exception e ){
             e.printStackTrace();
         }
     }
 
     public void deleteAllUsers(int id) {
-         userRepository.deleteAll();
+        customerRepository.deleteAll();
     }
 
 
-    public void saveUser(User user) {
+    public void saveUser(Customer customer) {
         try {
-            userRepository.save(user);
+            customerRepository.save(customer);
         }
         catch(Exception e ){
             e.printStackTrace();

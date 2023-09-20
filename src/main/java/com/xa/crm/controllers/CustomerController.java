@@ -1,7 +1,9 @@
 package com.xa.crm.controllers;
-//<editor-fold defaultstate="collapsed"  desc="imports">  
 
+
+import com.xa.crm.models.Customer;
 import com.xa.crm.models.User;
+import com.xa.crm.services.CustomerService;
 import com.xa.crm.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,29 +13,22 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 
-
-
 @RestController
-@RequestMapping("users")
-public class UsersController {
+@RequestMapping("customers")
+public class CustomerController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    UserService userService;
-
-
-
-    public UsersController() { }
-
+    CustomerService customerService;
 
     @CrossOrigin("*")
-    @PutMapping(value = "addUser", consumes = MediaType.APPLICATION_JSON)
-    public @ResponseBody Integer add(@RequestParam("user") User user) throws IOException {
+    @PutMapping(value = "addCustomer", consumes = MediaType.APPLICATION_JSON)
+    public @ResponseBody Integer add(@RequestParam("customer") Customer customer) throws IOException {
         logger.info("addUser ");
         try {
-            userService.saveUser(user);
+            customerService.saveUser(customer);
         }
         catch(Exception e)
         {
@@ -50,11 +45,11 @@ public class UsersController {
 
 
     @CrossOrigin("*")
-    @PutMapping(value = "editUser", consumes = MediaType.APPLICATION_JSON)
-    public @ResponseBody Integer edit(@RequestParam("user") User user) throws IOException {
-        logger.info(" editUser ");
+    @PutMapping(value = "editCustomer", consumes = MediaType.APPLICATION_JSON)
+    public @ResponseBody Integer edit(@RequestParam("customer") Customer customer) throws IOException {
+        logger.info(" editCustomer ");
         try {
-            userService.saveUser(user);
+            customerService.saveUser(customer);
         }
         catch(Exception e)
         {
@@ -64,6 +59,9 @@ public class UsersController {
         }
         return 1;
     }
+
+
+
 
 
 
